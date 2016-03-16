@@ -1,4 +1,4 @@
-package assessment;
+package server;
 
 import java.util.List;
 

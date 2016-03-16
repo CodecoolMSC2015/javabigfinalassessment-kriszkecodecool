@@ -1,4 +1,4 @@
-package assessment;
+package server;
 
 public class Skill {
 	String name;
