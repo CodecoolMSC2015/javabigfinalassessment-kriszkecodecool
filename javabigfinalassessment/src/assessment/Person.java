@@ -1,11 +1,12 @@
 package assessment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
 	String name;
 	String email;
-	List<Skill> skillset;
+	List<Skill> skillset = new ArrayList<Skill>();
 
 	public Person(String name, String email) {
 		this.name = name;
@@ -37,6 +38,10 @@ public class Person {
 
 	public void setSkillset(List<Skill> skillset) {
 		this.skillset = skillset;
+	}
+
+	public void addSkill(Skill skill) {
+		skillset.add(skill);
 	}
 
 }
