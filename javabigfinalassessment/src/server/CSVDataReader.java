@@ -3,45 +3,34 @@ package server;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CSVDataReader extends DataReader {
 	String csvFilePath;
-	List<Person> persons = new ArrayList<Person>();
+	Set<Person> people = new HashSet<Person>();
 
-	public List<Person> getPersons() {
-		return persons;
+	public Set<Person> getPersons() {
+		return people;
 	}
 
-	public void setPersons(List<Person> persons) {
-		this.persons = persons;
-	}
-
-	public CSVDataReader(String csvFilePath) {
+	public CSVDataReader(String csvFilePath, String skillName) {
 		BufferedReader br = null;
 		String line = "";
+		Person person = new Person();
+		Set<Person> people = new HashSet<Person>();
 		try {
 			br = new BufferedReader(new FileReader(csvFilePath));
 			while ((line = br.readLine()) != null) {
 				String[] data = line.split(",");
-				String name = data[0];
-				String email = data[1];
-				String salary = data[5];
 				Skill skill = new Skill(data[2], data[3]);
-				if (salary == "") {
-					Person person = new Person();
-					person.setName(name);
-					person.setEmail(email);
+				if (data[2].equals(skillName)) {
+					person = new Person();
+					person.setName(data[0]);
+					person.setEmail(data[1]);
 					person.addSkill(skill);
-					persons.add(person);
-				} else {
-					Person employee = new Employee();
-					employee.setName(name);
-					employee.setEmail(email);
-					employee.addSkill(skill);
-					((Employee) employee).setSalary(Integer.parseInt(salary));
 				}
+				people.add(person);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -54,6 +43,13 @@ public class CSVDataReader extends DataReader {
 				}
 			}
 		}
+		for (Person person2 : people) {
+			System.out.println(person2.getName());
+		}
+	}
+
+	public static void main(String[] args) {
+		CSVDataReader asd = new CSVDataReader("C:/persons.csv", "Java");
 	}
 
 }

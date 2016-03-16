@@ -7,6 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import server.SearchType;
 
 public class PersonStoreServerSocket {
 	DataReader store;
@@ -19,8 +22,8 @@ public class PersonStoreServerSocket {
 			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 			while (true) {
 				if (ois.read() > -1) {
-					// CSVDataReader reader = new
-					// CSVDataReader("C:/persons.csv");
+					SearchType type = SearchType.Mandatory;
+					String name = "Java";
 				}
 			}
 		} catch (IOException e) {

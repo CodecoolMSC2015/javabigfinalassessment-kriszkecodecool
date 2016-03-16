@@ -1,15 +1,14 @@
 package server;
 
 import java.util.List;
+import java.util.Set;
 
 public abstract class DataReader {
 	String searchCriteria;
 	SearchType SearchType;
 	List<Person> persons;
 
-	public List<Person> getPersons(String criteria, SearchType searchtype) {
-		return persons;
-	}
+	public abstract Set<Person> getPersons();
 
 	public void setPersons(List<Person> persons) {
 		this.persons = persons;
